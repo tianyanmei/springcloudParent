@@ -1,0 +1,12 @@
+EurekaServer 启动类。
+这是一个 EurekaServer ，它扮演的角色是注册中心，用于注册各种微服务，以便于其他微服务找到和访问。 所以 Eureka 这个单词是 “找到啦” 的意思。
+EurekaServer 本身就是个 Springboot 微服务, 所以它有 @SpringBootApplication 注解。
+@EnableEurekaServer 表示这是个 EurekaServer 。
+启动的时候，端口号没有在配置文件里，而是直接放在代码里，这么做是为了提示同学这个端口号是否被占用了
+
+
+配置文件（application.yml），提供 eureka 的相关信息。
+hostname: localhost 表示主机名称。
+register-With-Eureka：false. 表示是否注册到服务器。 因为它本身就是服务器，所以就无需把自己注册到服务器了。
+fetch-Registry: false. 表示是否获取服务器的注册信息，和上面同理，这里也设置为 false。
+defaultZone： http://${eureka.instance.hostname}:${server.port}/eureka/ 自己作为服务器，公布出来的地址。 比如后续某个微服务要把自己注册到 eureka server, 那么就要使用这个地址： http://localhost:8761/eureka/
