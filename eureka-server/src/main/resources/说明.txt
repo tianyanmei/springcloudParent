@@ -16,3 +16,5 @@ defaultZone： http://${eureka.instance.hostname}:${server.port}/eureka/ 自己�
 http://127.0.0.1:8761/
 这就是注册中心的管理界面，主要看 ：Instances currently registered with Eureka， 可以发现信息是：No instances available。
 这表示 暂时还没有微服务注册进来。
+@EnableDiscoveryClient， 表示用于发现eureka 注册中心的微服务
+@LoadBalanced注解 在RestTemplate的bean上开启负载均衡

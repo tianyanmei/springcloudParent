@@ -12,7 +12,7 @@ public class EurekaServerApplication {
 
     public static void main(String[] args) {
         // SpringApplication.run(EurekaserverApplication.class, args);
-        int port=8762;
+        int port=8761;
         if(!NetUtil.isUsableLocalPort(port)){
             System.out.printf("端口%d被占用了，无法启动%n", port );
             System.exit(1);
