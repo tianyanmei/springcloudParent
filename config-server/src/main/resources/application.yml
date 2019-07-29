@@ -6,8 +6,8 @@ spring:
       label: master
       server:
         git:
-          uri: https://github.com/how2j/springcloudConfig/
-          searchPaths: respo
+          uri: https://github.com/tianyanmei/springcloudParent/ #master前面的参数
+          searchPaths: com.zhouhj.springcloudConfig  #master后面的参数
 eureka:
   client:
     serviceUrl:
