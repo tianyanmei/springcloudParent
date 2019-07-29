@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: zipkin-server #注册到注册中心的名字，可以映射ip
+  main:
+    allow-bean-definition-overriding: true
+
+management:
+  metrics:
+    web:
+      server:
+        auto-time-requests: false

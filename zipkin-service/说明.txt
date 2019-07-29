@@ -1,0 +1,35 @@
+1.log4j 架包冲突
+  解决方法：<dependency>
+                   <groupId>io.zipkin.java</groupId>
+                   <artifactId>zipkin-server</artifactId>
+                   <version>2.9.4</version>
+                   <exclusions>
+                       <exclusion>
+                           <groupId>org.springframework.boot</groupId>
+                           <artifactId>spring-boot-starter-log4j2</artifactId>
+                       </exclusion>
+                   </exclusions>
+               </dependency>
+2.java.lang.IllegalArgumentException: Prometheus requires that all meters with the same name have the same set of tag keys. There is already an existing meter containing tag keys [method, status, uri]. The meter you are attempting to register has keys [exception, method, status, uri].
+
+  解决方法:配置文件加
+    management:
+      metrics:
+        web:
+          server:
+            auto-time-requests: false
+
+3.Caused by: java.lang.ClassNotFoundException: javax.servlet.Filter
+  缺少依赖包，引入web包
+          <dependency>
+              <groupId>org.springframework.boot</groupId>
+              <artifactId>spring-boot-starter</artifactId>
+          </dependency>
+
+          <dependency>
+              <groupId>org.springframework.boot</groupId>
+              <artifactId>spring-boot-starter-web</artifactId>
+          </dependency>
+
+
+4.服务链路地址为：http://localhost:9411/zipkin/dependency
