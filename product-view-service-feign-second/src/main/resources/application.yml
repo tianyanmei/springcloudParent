@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: product-view-service-feign
+  zipkin:
+    base-url: http://localhost:9411
+
+management:
+  endpoint:
+    web:
+      exposure:
+        include: "*"  #打开全部请求端点
+      cors:
+        allowed-origins: "*"
+        allowed-methods: "*"
+  server:
+    port: 8013
+feign:
+  hystrix:
+    enabled: true

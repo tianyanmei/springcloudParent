@@ -7,8 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import java.util.List;
 
 
-
-@FeignClient(value = "PRODUCT-DATA-SERVICE",fallback = ProductClientFeignHystrix.class) //此处为eureka中的application名称
+@FeignClient(value = "PRODUCT-DATA-SERVICE",fallback = ProductClientFeignImpl.class) //此处为eureka中的application名称
 public interface ProductClientFeign {
 
      @GetMapping(value = "/product/getAllproduct")

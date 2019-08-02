@@ -1,7 +1,5 @@
 package com.zhouhj.pojo;
 
-import org.springframework.beans.factory.annotation.Value;
-
 public class Product {
     private  int id;
     private String name;
