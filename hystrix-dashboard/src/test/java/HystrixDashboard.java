@@ -14,13 +14,19 @@ public class HystrixDashboard {
                new Thread() {
                    public void run() {
                        String html = HttpUtil.get("http://localhost:8012/product");
-                       System.out.println("html length:" + html.length());
+                       System.out.println(currentThread().getId()+":"+currentThread().getName()+"html length:" + html.length());
                    }
                }.start();//开启线程
 
 
-             String html = HttpUtil.get("http://localhost:8012/product");
-             System.out.println("html length:" + html.length());
+               new Thread(){
+                   @Override
+                   public void run() {
+                       String html = HttpUtil.get("http://localhost:8013/product");
+                       System.out.println(currentThread().getId()+":"+currentThread().getName()+ "html length:" + html.length());
+                   }
+               }.start();
+
 
            }catch (Exception e){
                System.err.println(e.getMessage());

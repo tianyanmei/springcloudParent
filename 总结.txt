@@ -1,0 +1,48 @@
+1.服务注册中心:
+  访问地址：http://127.0.0.1:8761/
+
+2 客户端
+  @EnableDiscoveryClient， 表示用于发现eureka 注册中心的微服务
+  @EnableEurekaClient  表示用于注册到服务端里的客户端
+  @EnableFeignClients， 表示用于使用 Feign 方式（用于客户端访问微服务端）
+
+3。服务链路追踪
+ 在需要追踪的启动类里配置 Sampler 抽样策略： ALWAYS_SAMPLE 表示持续抽样
+ @Bean
+ public Sampler defaultSampler() {
+ 	return Sampler.ALWAYS_SAMPLE;
+ }
+4.消息总线无法自动刷新，待定
+
+5.断路器 在服务无法访问的时候走的异常类
+ @FeignClient(value = "PRODUCT-DATA-SERVICE",fallback = ProductClientFeignHystrix.class)
+ 并且 fallback中的类实现由FeignClient注释的接口
+ 断路器监控 ：
+   断路器监控启动类，加上注解@EnableHystrixDashboard
+   需要监控的启动类中加上注解  @EnableCircuitBreaker
+
+ 集群监控
+  turbine作用是把一个集群里的多个实例汇聚在一个 turbine里，
+  这个然后再在断路器监控里查看这个 turbine, 在集群层面进行监控。
+  在turbine 项目启动类中加上@EnableTurbine
+
+  项目地址：访问地址：http://localhost:8020/hystrix
+            turbine 项目端口为8021
+     http://localhost:8021/turbine.stream 在8020端口中输入
+
+网关：zuul
+ 通过网关来配置访问微服务集群，而不再走ip 端口来进行服务访问
+
+端口总结：
+eureka-server: 8761
+product-data-service: 8001,8002
+product-view-service-ribbon: 8010
+product-view-service-feign: 8012, 8013
+hystrix-dashboard: 8020
+turbine: 8021
+config-server: 8030
+zuul: 8040
+
+第三方
+zipkin:9411
+rabbitMQ: 5672
